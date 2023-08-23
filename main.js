@@ -6,6 +6,8 @@ window.onload = init;
 let currentX;
 let currentY;
 
+let primes = [2];
+
 let step = 1;
 let stepsBeforeTurn = 1;
 let incStepsBeforeTurn = true;
@@ -33,6 +35,19 @@ function draw() {
     context.fillText(step, currentX, currentY);
 
     doStep();
+}
+
+function isPrime(num) {
+    if (num == 1) return false;
+    if (num == 2) return true;
+
+    let boundary = Math.sqrt(num);
+    for (let i = 0; i < primes.length && primes[i] <= boundary; ++i) {
+        if (num % primes[i] == 0) return false;
+    }
+
+    primes.push(num);
+    return true;
 }
 
 function doStep() {
