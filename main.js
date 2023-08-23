@@ -22,6 +22,19 @@ function init() {
     window.requestAnimationFrame(main);
 }
 
+function main() {
+    draw();
+
+    window.requestAnimationFrame(main);
+}
+
+function draw() {
+    context.font = "30px Arial";
+    context.fillText(step, currentX, currentY);
+
+    doStep();
+}
+
 function doStep() {
     switch (direction) {
         case 0: currentX += stepSize; break; // RIGHT
@@ -36,17 +49,4 @@ function doStep() {
         direction = (direction + 1) % 4;
     }
     ++step;
-}
-
-function main() {
-    draw();
-
-    window.requestAnimationFrame(main);
-}
-
-function draw() {
-    context.font = "30px Arial";
-    context.fillText(step, currentX, currentY);
-
-    doStep();
 }
