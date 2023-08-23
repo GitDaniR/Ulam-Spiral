@@ -10,14 +10,15 @@ let previousY;
 
 let primes = [2];
 
+let zoom = 1;
+let widthOfLine = 5 / zoom;
+let circleRadius = 10 / zoom;
+let mainColor = "azure";
+
 let step = 1;
 let stepsBeforeTurn = 1;
 let direction = 0;
-let stepSize = 20;
-
-let widthOfLine = 5;
-let circleRadius = 10;
-let mainColor = "azure";
+let stepSize = 20 / zoom;
 
 function init() {
     canvas = document.getElementById('canvas');
