@@ -31,8 +31,12 @@ function main() {
 }
 
 function draw() {
-    context.font = "30px Arial";
-    context.fillText(step, currentX, currentY);
+    context.fillStyle = "azure";
+    if (isPrime(step)) {
+        context.beginPath();
+        context.arc(currentX, currentY, 10, 0, 2 * Math.PI);
+        context.fill();
+    }
 
     doStep();
 }
