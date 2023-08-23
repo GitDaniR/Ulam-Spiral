@@ -5,6 +5,8 @@ window.onload = init;
 
 let currentX;
 let currentY;
+let previousX;
+let previousY;
 
 let primes = [2];
 
@@ -20,6 +22,8 @@ function init() {
 
     currentX = canvas.width / 2;
     currentY = canvas.height / 2;
+    previousX = currentX;
+    previousY = currentY;
 
     window.requestAnimationFrame(main);
 }
@@ -32,10 +36,20 @@ function main() {
 
 function draw() {
     context.fillStyle = "azure";
+    context.lineWidth = 3;
+    context.strokeStyle = "azure";
+
+    context.beginPath();
+    context.moveTo(previousX, previousY);
+    context.lineTo(currentX, currentY);
+    context.stroke();
+    context.closePath();
+
     if (isPrime(step)) {
         context.beginPath();
         context.arc(currentX, currentY, 10, 0, 2 * Math.PI);
         context.fill();
+        context.closePath();
     }
 
     doStep();
@@ -55,6 +69,9 @@ function isPrime(num) {
 }
 
 function doStep() {
+    previousX = currentX;
+    previousY = currentY;
+
     switch (direction) {
         case 0: currentX += stepSize; break; // RIGHT
         case 1: currentY -= stepSize; break; // UP
