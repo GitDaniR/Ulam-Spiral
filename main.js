@@ -15,6 +15,10 @@ let stepsBeforeTurn = 1;
 let direction = 0;
 let stepSize = 20;
 
+let widthOfLine = 5;
+let circleRadius = 10;
+let mainColor = "azure";
+
 function init() {
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
@@ -24,6 +28,11 @@ function init() {
     currentY = canvas.height / 2;
     previousX = currentX;
     previousY = currentY;
+
+    // Set draw config
+    context.fillStyle = mainColor;
+    context.lineWidth = widthOfLine;
+    context.strokeStyle = mainColor;
 
     window.requestAnimationFrame(main);
 }
@@ -35,10 +44,6 @@ function main() {
 }
 
 function draw() {
-    context.fillStyle = "azure";
-    context.lineWidth = 3;
-    context.strokeStyle = "azure";
-
     // Draw line between previous and current pointers
     context.beginPath();
     context.moveTo(previousX, previousY);
@@ -49,7 +54,7 @@ function draw() {
     // Draw circle if the current number is a prime
     if (isPrime(step)) {
         context.beginPath();
-        context.arc(currentX, currentY, 10, 0, 2 * Math.PI);
+        context.arc(currentX, currentY, circleRadius, 0, 2 * Math.PI);
         context.fill();
         context.closePath();
     }
